@@ -12,7 +12,7 @@ var date = dayjs().format("MM/DD/YYYY");
 var getweather = function (cityName) {
   cityInput.value = "";
   fetch(
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
       cityName +
       "&appid=" +
       appId
@@ -116,27 +116,27 @@ var printForecast = function (forecast) {
   var img4 = document.createElement("img");
 
   img0.src =
-    "http://openweathermap.org/img/wn/" +
+    "https://openweathermap.org/img/wn/" +
     forecast.day0.weather[0].icon +
     "@2x.png";
 
   img1.src =
-    "http://openweathermap.org/img/wn/" +
+    "https://openweathermap.org/img/wn/" +
     forecast.day1.weather[0].icon +
     "@2x.png";
 
   img2.src =
-    "http://openweathermap.org/img/wn/" +
+    "https://openweathermap.org/img/wn/" +
     forecast.day2.weather[0].icon +
     "@2x.png";
 
   img3.src =
-    "http://openweathermap.org/img/wn/" +
+    "https://openweathermap.org/img/wn/" +
     forecast.day3.weather[0].icon +
     "@2x.png";
 
   img4.src =
-    "http://openweathermap.org/img/wn/" +
+    "https://openweathermap.org/img/wn/" +
     forecast.day4.weather[0].icon +
     "@2x.png";
 

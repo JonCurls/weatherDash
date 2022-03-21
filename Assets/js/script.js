@@ -12,7 +12,7 @@ var date = dayjs().format("MM/DD/YYYY");
 var getweather = function (cityName) {
   cityInput.value = "";
   fetch(
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
       cityName +
       "&appid=" +
       appId

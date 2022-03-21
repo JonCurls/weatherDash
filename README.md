@@ -19,7 +19,7 @@ https://joncurls.github.io/weatherDash/
 
 ## Thumbnail
 
-![Screenshot](./assets/images/thumbnail.PNG)
+![Screenshot](./Assets/images/thumbnail.PNG)
 
 ## Creator
 

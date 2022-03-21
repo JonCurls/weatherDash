@@ -1,44 +1,26 @@
-# 06 Server-Side APIs: Weather Dashboard
+# Jonathan Franklin's Weather Dashboard
 
-Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+## Purpose
 
-Use the [OpenWeather One Call API](https://openweathermap.org/api/one-call-api) to retrieve weather data for cities. Read through the documentation for setup and usage instructions. You will use `localStorage` to store any persistent data.
+A webite that allows the user to search by city for current weather and 5 day forecast. After user has searched for city, the name is saved in local storage and a button created allowing the city to be searched for.
 
-## User Story
+## Built With
 
-```
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
-```
+- HTML
+- CSS
+- JAVASCRIPT
+- BULMA
+- JQUERY
+- DAY.JS
 
-## Acceptance Criteria
+## Website
 
-```
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-```
+https://joncurls.github.io/weatherDash/
 
-The following image demonstrates the application functionality:
+## Thumbnail
 
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
+![Screenshot](./assets/images/thumbnail.PNG)
 
-## Review
+## Creator
 
-You are required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a high-quality README describing the project.
-
-- - -
-© 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+Made with ❤️💧🩸 by Jonathan F.

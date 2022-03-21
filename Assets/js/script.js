@@ -7,7 +7,9 @@ var current = {};
 var forecast = {};
 var submitBtn = document.querySelector(".submitBtn");
 var appId = "f4b74f4236f0eb1a65c89d0e0595e239";
-var searchHistory = [];
+var searchHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
+var date = dayjs().format("MM/DD/YYYY");
+var newCity = [];
 
 var getweather = function (cityName) {
   cityInput.value = "";
@@ -44,7 +46,7 @@ var getweather = function (cityName) {
           current.humidity = data.current.humidity;
           current.wind = data.current.wind_speed;
           current.uvi = data.current.uvi;
-          printWeather();
+          printWeather(cityName);
         });
     });
 };
@@ -71,24 +73,32 @@ var getForecast = function (data) {
 };
 
 var cityLookup = function () {
-  console.log(cityInput.value);
   cityName = cityInput.value;
-  console.log(cityName);
   saveCity(cityName);
   getweather(cityName);
   cityInput.value.value = "";
 };
 
 var saveCity = function (cityName) {
-  let newCity = searchHistory.push(cityName);
-  localStorage.setItem("cityHistory", searchHistory);
-  console.log(searchHistory);
+  var cityBtn = document.createElement("button");
+  $(cityBtn).addClass("button");
+  cityBtn.innerHTML = cityName;
+  var searchEl = document.querySelector(".searchColumn");
+  $(searchEl).append(cityBtn);
+  searchHistory.push(cityName);
+  localStorage.setItem("cityHistory", JSON.stringify(searchHistory));
+
+  $(document).on("click", "#search-history", function (e) {
+    cityName = e.target.innerHTML;
+    console.log(cityName);
+    getweather(e.target.innerHTML);
+  });
 };
 
-var printWeather = function () {
+var printWeather = function (cityName) {
   $(".weather-data").empty();
   $(".cityName").empty();
-  $(".cityName").append(cityName);
+  $(".cityName").append(cityName, " ", date);
   $(".weather-data").append("Temp: " + current.temp + "\xB0F");
   $(".weather-data").append("<br />Wind Speed: " + current.wind + " MPH");
   $(".weather-data").append("<br />Humidity: " + current.humidity + "%");
@@ -96,26 +106,78 @@ var printWeather = function () {
 };
 
 var printForecast = function (forecast) {
-  console.log(forecast);
-  console.log(forecast.day0.temp.day);
-  $(".forecast-body").empty();
-  //i < 5
-  for (i = 0; i < 2; i++) {
-    var forecastEl = document.querySelector("#forecast-container");
-    var divEl = document.createElement("div");
-    var tempEl = document.createElement("p");
-    var windEl = document.createElement("p");
-    var humEl = document.createElement("p");
+  date0 = dayjs().add(1, "day").format("MM/DD/YYYY");
 
-    // $(".forecast-body").append(".divEl");
-    // forecastEl.appendChild();
-    $(forecastEl).append(
-      "<br />Temp: " + forecast["day" + i].temp.day + "\xB0F",
-      "<br />Wind: " + forecast["day" + i].wind_speed + " MPH",
-      "<br />Humidity: " + forecast["day" + i].humidity + "%"
-    );
-    $(".forecast-title").append(forecastEl);
+  for (i = 0; i < 5; i++) {
+    $("#forecast-container" + i).empty();
   }
+
+  var img0 = document.createElement("img");
+  var img1 = document.createElement("img");
+  var img2 = document.createElement("img");
+  var img3 = document.createElement("img");
+  var img4 = document.createElement("img");
+
+  img0.src =
+    "http://openweathermap.org/img/wn/" +
+    forecast.day0.weather[0].icon +
+    "@2x.png";
+
+  img1.src =
+    "http://openweathermap.org/img/wn/" +
+    forecast.day1.weather[0].icon +
+    "@2x.png";
+
+  img2.src =
+    "http://openweathermap.org/img/wn/" +
+    forecast.day2.weather[0].icon +
+    "@2x.png";
+
+  img3.src =
+    "http://openweathermap.org/img/wn/" +
+    forecast.day3.weather[0].icon +
+    "@2x.png";
+
+  img4.src =
+    "http://openweathermap.org/img/wn/" +
+    forecast.day4.weather[0].icon +
+    "@2x.png";
+
+  $("#forecast-container0").append(
+    dayjs().add(1, "day").format("MM/DD/YYYY"),
+    img0,
+    "<br />Temp: " + forecast.day0.temp.day + "\xB0F",
+    "<br />Wind: " + forecast.day0.wind_speed + " MPH",
+    "<br />Humidity: " + forecast.day0.humidity + "%"
+  );
+  $("#forecast-container1").append(
+    dayjs().add(2, "day").format("MM/DD/YYYY"),
+    img1,
+    "<br />Temp: " + forecast.day1.temp.day + "\xB0F",
+    "<br />Wind: " + forecast.day1.wind_speed + " MPH",
+    "<br />Humidity: " + forecast.day1.humidity + "%"
+  );
+  $("#forecast-container2").append(
+    dayjs().add(3, "day").format("MM/DD/YYYY"),
+    img2,
+    "<br />Temp: " + forecast.day2.temp.day + "\xB0F",
+    "<br />Wind: " + forecast.day2.wind_speed + " MPH",
+    "<br />Humidity: " + forecast.day2.humidity + "%"
+  );
+  $("#forecast-container3").append(
+    dayjs().add(4, "day").format("MM/DD/YYYY"),
+    img3,
+    "<br />Temp: " + forecast.day3.temp.day + "\xB0F",
+    "<br />Wind: " + forecast.day3.wind_speed + " MPH",
+    "<br />Humidity: " + forecast.day3.humidity + "%"
+  );
+  $("#forecast-container4").append(
+    dayjs().add(5, "day").format("MM/DD/YYYY"),
+    img4,
+    "<br />Temp: " + forecast.day4.temp.day + "\xB0F",
+    "<br />Wind: " + forecast.day4.wind_speed + " MPH",
+    "<br />Humidity: " + forecast.day4.humidity + "%"
+  );
 };
 
 $(".submitBtn").click(cityLookup);

@@ -2,14 +2,12 @@ var weatherEl = document.querySelector("#weather-container");
 var cityEl = document.querySelector(".cityName");
 var weatherDataEl = document.querySelector(".weather-data li");
 var cityInput = document.querySelector("#city");
-// var forecastEl = document.querySelector(".forecast-body");
 var current = {};
 var forecast = {};
 var submitBtn = document.querySelector(".submitBtn");
 var appId = "f4b74f4236f0eb1a65c89d0e0595e239";
 var searchHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
 var date = dayjs().format("MM/DD/YYYY");
-var newCity = [];
 
 var getweather = function (cityName) {
   cityInput.value = "";

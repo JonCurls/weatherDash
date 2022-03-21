@@ -90,7 +90,6 @@ var saveCity = function (cityName) {
 
   $(document).on("click", "#search-history", function (e) {
     cityName = e.target.innerHTML;
-    console.log(cityName);
     getweather(e.target.innerHTML);
   });
 };
